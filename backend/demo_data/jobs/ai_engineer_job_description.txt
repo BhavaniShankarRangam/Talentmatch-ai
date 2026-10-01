@@ -1,0 +1,35 @@
+AI Engineer - Applied ML Platform
+Department: Engineering | Location: Hybrid
+
+About the role
+We are hiring an AI Engineer to design, build, and operate LLM-powered features for internal enterprise users.
+
+Required skills
+- Python
+- PyTorch or TensorFlow
+- Large language models (LLMs)
+- Retrieval-augmented generation (RAG)
+- SQL
+- Docker
+
+Professional experience
+- 3+ years building machine learning systems
+- Experience deploying models to production
+- Experience with a major cloud platform such as AWS, Azure, or Google Cloud
+
+Responsibilities
+- Design and evaluate prompts and LLM pipelines
+- Build REST APIs for model serving
+- Monitor model quality and drift
+- Collaborate with product, data, and security teams
+
+Project evidence
+- Shipped an end-to-end AI product feature
+- Built evaluation datasets or benchmarks for model quality
+- Project work using RAG or vector search
+
+Required qualifications
+- Current professional cloud certification
+- Version control with Git, CI/CD pipelines, and automated testing
+
+We evaluate every applicant on job-related evidence only.

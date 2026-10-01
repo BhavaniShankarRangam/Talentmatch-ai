@@ -1,0 +1,55 @@
+# Local development stack with PostgreSQL and a separate background worker.
+# NOTE: written for milestone 1 but NOT yet tested (Docker was not available on the build machine).
+# The SQLite path in README.md is the tested way to run the demo.
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: talentmatch
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-talentmatch-dev-only}
+      POSTGRES_DB: talentmatch
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U talentmatch"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    environment: &backend_env
+      DATABASE_URL: postgresql+psycopg://talentmatch:${POSTGRES_PASSWORD:-talentmatch-dev-only}@db:5432/talentmatch
+      STORAGE_DIR: /data/documents
+      TASK_MODE: worker
+      JWT_SECRET: ${JWT_SECRET:-dev-only-insecure-secret-change-me}
+      LLM_PROVIDER: mock
+      EMAIL_PROVIDER: mock
+      APP_BASE_URL: http://localhost:5173
+      CORS_ORIGINS: http://localhost:5173
+    volumes: [documents:/data/documents]
+    ports: ["8000:8000"]
+    depends_on:
+      db: { condition: service_healthy }
+
+  worker:
+    build: ./backend
+    command: python -m app.worker
+    environment: *backend_env
+    volumes: [documents:/data/documents]
+    depends_on:
+      db: { condition: service_healthy }
+
+  web:
+    image: node:20
+    working_dir: /app
+    command: sh -c "npm install && npx vite --host 0.0.0.0"
+    environment:
+      VITE_API_PROXY: http://api:8000
+    volumes: [./frontend:/app, /app/node_modules]
+    ports: ["5173:5173"]
+    depends_on: [api]
+
+volumes:
+  pgdata:
+  documents:

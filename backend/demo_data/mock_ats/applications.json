@@ -1,0 +1,26 @@
+[
+  {
+    "external_application_id": "MATS-APP-1001",
+    "external_candidate_id": "MATS-CAND-501",
+    "job_external_ref": "REQ-1001",
+    "submitted_at": "2026-09-20T14:05:00Z",
+    "resume_file": "mock_ats_quinn_harper.pdf",
+    "simulate_transient_failures": 0
+  },
+  {
+    "external_application_id": "MATS-APP-1002",
+    "external_candidate_id": "MATS-CAND-502",
+    "job_external_ref": "REQ-1001",
+    "submitted_at": "2026-09-21T09:30:00Z",
+    "resume_file": "mock_ats_drew_kim.docx",
+    "simulate_transient_failures": 1
+  },
+  {
+    "external_application_id": "MATS-APP-1003",
+    "external_candidate_id": "MATS-CAND-503",
+    "job_external_ref": "REQ-1001",
+    "submitted_at": "2026-09-22T16:45:00Z",
+    "resume_file": "missing_resume_file.pdf",
+    "simulate_transient_failures": 0
+  }
+]
