@@ -1,5 +1,7 @@
 # TalentMatch AI
 
+[![CI](https://github.com/BhavaniShankarRangam/Talentmatch-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/BhavaniShankarRangam/Talentmatch-ai/actions/workflows/ci.yml)
+
 An enterprise recruitment assistant. It collects resumes for a job opening, extracts evidence, compares each
 resume against a **recruiter-approved rubric**, and calculates an **explainable alignment score from 0 to 100**.
 Recruiters filter by an inclusive score range, select candidates, and preview and send a shortlist email.
