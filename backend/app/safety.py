@@ -95,7 +95,9 @@ def redact_text(text: str, names: list[str] | None = None) -> str:
     out = _PHONE_RE.sub(_phone_sub, out)
     out = _SENSITIVE_RE.sub("[REDACTED]", out)
     for name in names or []:
-        for part in {name, *name.split()}:
+        # Longest first so the full name is replaced as one token; sorted() also makes the
+        # output deterministic (iterating a set depends on PYTHONHASHSEED).
+        for part in sorted({name, *name.split()}, key=lambda p: (-len(p), p)):
             if len(part) >= 3:
                 out = re.sub(rf"\b{re.escape(part)}\b", "[CANDIDATE]", out, flags=re.IGNORECASE)
     return out
