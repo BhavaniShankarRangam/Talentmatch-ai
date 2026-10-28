@@ -142,7 +142,8 @@ def main() -> None:
             shutil.rmtree(storage)
     seed(args.full)
     print("Seeded SYNTHETIC demo data.")
-    print(f"  Sign in: recruiter@acme.example / {DEMO_PASSWORD}  (also admin@, manager@acme.example; admin@globex.example)")
+    print("  Sign in users: recruiter@acme.example (also admin@, manager@acme.example; admin@globex.example)")
+    print("  Password: configured as DEMO_PASSWORD in backend/app/seed.py")
     print(f"  Demo resumes for manual upload: {DEMO_DIR / 'resumes'}")
 
 
